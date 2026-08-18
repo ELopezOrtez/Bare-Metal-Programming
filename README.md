@@ -1,6 +1,6 @@
 <h1 align="center">Projects</h1>
 
-<b>Blinking A Physical LED<b>
+<b>1. Blinking A Physical LED<b>
 
 Purpose: <p>To answer a question that I proposed to myself in school. The question being "how did my professor create the contents within the header file, and create the setup within main.c?"
          I answered this question by buying another microcontroller separate from the one we used in class. The microcontroller that I bought was the STM32 Nucleo-F446RE. I utilized this
