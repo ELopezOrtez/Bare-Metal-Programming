@@ -1,0 +1,13 @@
+# STM32CubeIDE Metadata & Build Folders
+.metadata/
+.settings/
+Debug/
+Startup/
+Release/
+
+# Project Files
+.cproject
+.project
+
+# Build Configuration
+*.launch
