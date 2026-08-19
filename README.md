@@ -11,4 +11,10 @@ Objective: <p>The project needs to blink a physical LED light on and off, repeat
 Process: <p>To achieve this goal and answer my question, I utilized the datasheets on Nucleo-F446RE from the STM32 website. Furthermore, I used AI for general concepts such as "What is an RCC? How does a RCC structure look like?"
              However, I crossed reference the output from the AI to the datasheets for accuracy. Lastly, I wrote the code that utilizes the GPIOx, RCC, SysTick, memory addresses, and anything in between</p>
 
-Result: (Will add outcome here)
+Result: 
+
+https://github.com/user-attachments/assets/daa5f06a-cf68-452a-b74a-f339a8bbee37
+
+
+
+
