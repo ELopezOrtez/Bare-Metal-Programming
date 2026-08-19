@@ -12,3 +12,5 @@ Process: <p>To achieve this goal and answer my question, I utilized the datashee
              However, I crossed reference the output from the AI to the datasheets for accuracy. Lastly, I wrote the code that utilizes the GPIOx, RCC, SysTick, memory addresses, and anything in between</p>
 
 Result: 
+
+<video src="Testing_Manual_Way/Video/IMG_4484.mp4" controls title = "Project Demo Video" style="max-width: 100%;"></video>
