@@ -1,4 +1,4 @@
-<h1 align="center">Projects</h1>
+<h1 align="center">Project</h1>
 
 <b>1. Blinking A Physical LED</b>
 
