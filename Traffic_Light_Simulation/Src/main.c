@@ -16,6 +16,8 @@
  ******************************************************************************
  */
 
+
+
 #include <stdbool.h>
 #include "gpio_address_map.h"
 
@@ -37,61 +39,33 @@ int main(void)
 
 	while(true) {
 
+		westRed();
 	}
 }
 
 void Setup_GPIO() {
 	// Enable clock to GPIOA, GPIOC, and GPIOF
-	RCC->AHB1ENR |= (1UL << 0) | (1UL << 2) | (1UL << 5);
+	RCC->AHB1ENR |= (1UL << 2);
 
 	// Allow clock to stabilize
-	while((RCC->AHB1ENR | (1UL << 0) | (1UL << 2) | (1UL << 5)) != (1UL << 0) | (1UL << 2) | (1UL << 5)) {};
+	//while((RCC->AHB1ENR | (1UL << 0) | (1UL << 2) | (1UL << 5)) != (1UL << 0) | (1UL << 2) | (1UL << 5)) {};
+	while((RCC->AHB1ENR & (1UL << 2)) != (1UL << 2)) {};
 
 	// ---------- Set output pins ----------
-
-	// PINS 13 and 14 for GPIOA
-	GPIOA->MODER &= ~(3UL << (PIN_13 * 2)); // Clear data between bits 27-26
-	GPIOA->MODER |= (1UL << (PIN_13 * 2)); // Pin 13 enable
-
-	GPIOA->MODER &= ~(3UL << (PIN_14 * 2)); // Clear data between bits 29-28
-	GPIOA->MODER |= (1UL << (PIN_14 * 2)); // Pin 14 enable
 
 	// PINS 10 and 12 for GPIOC
 	GPIOC->MODER &= ~(3UL << (PIN_10 * 2)); // Clear data between bits 21-20
 	GPIOC->MODER |= (1UL << (PIN_10 * 2)); // Pin 10 enable
 
-	GPIOC->MODER &= ~(3UL << (PIN_12 * 2)); // Clear data between bits 25-24
-	GPIOC->MODER |= (1UL << (PIN_12 * 2)); // Pin 12 enable
-
-	// PINS 6 and 7 for GPIOF
-	GPIOF->MODER &= ~(3UL << (PIN_6 * 2)); // Clear data between bits 13-12
-	GPIOF->MODER |= (1UL << (PIN_6 * 2)); // Pin 6 enable
-
-	GPIOF->MODER &= ~(3UL << (PIN_7 * 2)); // Clear data between bits 15-14
-	GPIOF->MODER |= (1UL << (PIN_7 * 2)); // Pin 7 enable
 
 	// ---------- Set Push-Pull ----------
-
-	GPIOA->OTYPER &= ~(1UL << PIN_13);
-	GPIOA->OTYPER &= ~(1UL << PIN_14);
-
 	GPIOC->OTYPER &= ~(1UL << PIN_10);
-	GPIOC->OTYPER &= ~(1UL << PIN_12);
 
-	GPIOF->OTYPER &= ~(1UL << PIN_6);
-	GPIOF->OTYPER &= ~(1UL << PIN_7);
 
 	// ---------- Set digital enable ----------
-
-	GPIOA->ODR |= (1UL << PIN_13);
-	GPIOA->ODR |= (1UL << PIN_14);
-
 	GPIOC->ODR |= (1UL << PIN_10);
-	GPIOC->ODR |= (1UL << PIN_12);
-
-	GPIOF->ODR |= (1UL << PIN_6);
-	GPIOF->ODR |= (1UL << PIN_7);
 }
+
 
 void SysTick_Init() {
 	SYSTICK->LOAD = SYSTICK_LOAD; // Set to 1ms interval
@@ -100,14 +74,18 @@ void SysTick_Init() {
 }
 
 void delay_ms(uint32_t ms) {
-
+	for(uint32_t i = 0; i < ms; i++) {
+		while((SYSTICK->CTRL & (1UL << 16)) == 0);
+	}
 }
 
 void westRed() {
-
+	// Initial State
+	GPIOC->ODR |= (1UL << PIN_10);
 }
 
-void westYellow() {
+
+/*void westYellow() {
 
 }
 
@@ -126,3 +104,4 @@ void eastYellow() {
 void eastGreen() {
 
 }
+*/
